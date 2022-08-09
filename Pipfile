@@ -19,6 +19,7 @@ tqdm = "==4.64.0"
 tensorflow-addons = "==0.17.1"
 albumentations = "==1.2.1"
 jupyternotify = "*"
+streamlit = "==1.11.1"
 
 [dev-packages]
 
