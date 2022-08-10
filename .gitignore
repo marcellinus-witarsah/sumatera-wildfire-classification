@@ -2,4 +2,5 @@ best_cnn_model*/
 best_unet_model*/
 unet_model*/
 .idea/
+logs/
 note.txt
