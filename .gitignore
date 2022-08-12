@@ -3,4 +3,5 @@ best_unet_model*/
 unet_model*/
 .idea/
 logs/
+*.docx
 note.txt
