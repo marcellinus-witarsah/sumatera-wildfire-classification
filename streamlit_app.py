@@ -14,7 +14,7 @@ def dice_coef(y_true, y_pred):
 
 
 # load model
-model_path = "models/unet_model_opt_adam_lr_0.001_batch_32_epochs_20_filters_32_size_144_date_20220809"
+model_path = "models/landsat_8/unet_model_opt_adam_lr_0.001_batch_32_epochs_20_filters_32_size_144_date_20220809"
 unet_model = tf.keras.models.load_model(model_path, custom_objects={'dice_coef': dice_coef})
 
 # Returns pretty much every information about your model
@@ -23,6 +23,8 @@ _, height, width, channel = config["layers"][0]["config"]["batch_input_shape"]
 
 # Title of the App
 st.title("Sumatra Wildfire Detection App")
+st.write("This web application is a final product of U-Net model trained using satellite images")
+
 
 # File uploader for Image
 uploaded_file = st.file_uploader("Please Input Wildfire Image", type="png")
@@ -35,11 +37,12 @@ if uploaded_file:
     image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     # convert image to RGB
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    # resize image
-    resized_image = cv2.resize(image, (height, width))
+    # prepare image for display
+    image_for_display = cv2.resize(image, (500, 500))
     # display image
-    st.image(resized_image*2, channels="RGB", caption="Uploaded file")
+    st.image(image_for_display * 3, channels="RGB", caption="Uploaded file")
     # prepare image for input
+    resized_image = cv2.resize(image, (height, width))
     normalized_image = tf.cast(resized_image / 255, tf.dtypes.float32)
     input_data = tf.expand_dims(normalized_image, 0)
 
@@ -51,7 +54,11 @@ if uploaded_file:
         # apply threshold to the result prediction
         np_mask = np.array(result[0])
         np_mask = np.where(np_mask < 0.5, 0, 1)
-        np_mask = np_mask* 255
-        st.image(np_mask, caption="Prediction Result")
+        np_mask = np_mask * 255
+        # prepare mask for display
+        mask_for_display = np.resize(np_mask, (500, 500))
+        st.image(mask_for_display, caption="Prediction Result")
+
+
 
 
