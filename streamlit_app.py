@@ -14,7 +14,8 @@ def dice_coef(y_true, y_pred):
 
 
 # load model
-model_path = "models/sentinel_2/unet_model_opt_adam_lr_0.001_batch_32_epochs_20_filters_16_size_176_date_20220810"
+model_path = "models/landsat_8/unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220809"
+img_type = "Landsat" if "landsat" in model_path else "Sentinel"
 unet_model = tf.keras.models.load_model(model_path, custom_objects={'dice_coef': dice_coef})
 
 # Returns pretty much every information about your model
@@ -23,7 +24,7 @@ _, height, width, channel = config["layers"][0]["config"]["batch_input_shape"]
 
 # Title of the App
 st.title("Sumatra Wildfire Detection App")
-st.write("This web application is a final product of U-Net model trained using satellite images")
+st.write("This web application is a final product of U-Net model trained using {} satellite images".format(img_type))
 
 
 # File uploader for Image
@@ -41,7 +42,7 @@ if uploaded_file:
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     # prepare image for display
-    scale_percentage = 0.6
+    scale_percentage = 0.5
     scaled_height = int(image.shape[0]*scale_percentage)
     scaled_width = int(image.shape[1]*scale_percentage)
     image_for_display = cv2.resize(image, (scaled_height, scaled_width))
@@ -69,7 +70,17 @@ if uploaded_file:
 
         # prepare mask for display
         mask_for_display = cv2.resize(np_mask, (scaled_height, scaled_width), interpolation=cv2.INTER_AREA)
-        st.image(mask_for_display, caption="Prediction Result")
+        
+        # return an array of unique value along with respectives amount
+        unique, counts = np.unique(np_mask, return_counts=True)
+        
+        # turn into dictionary => {0: ..., 255: ...}
+        unique_count_dict = dict(zip(unique, counts))
+        percentage_burned = unique_count_dict[255]/(unique_count_dict[0]+unique_count_dict[255])
+        
+        # display the mask and the caption
+        st.image(mask_for_display, caption='{:.2%} of Land Burned'.format(percentage_burned))
+
 
 
 
