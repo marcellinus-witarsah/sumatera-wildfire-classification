@@ -1,0 +1,5 @@
+run,dice_coefficient,satellite_band,type_run,opt,lr,batch,start_filter,img_size,acc,binary_iou,binary_crossentropy
+fit\landsat_8_b4_b3_b2\unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220809\validation,0.6692308187484741,landsat_8_b4_b3_b2,validation,adam,0.001,16,32,176,0.9399802684783936,0.7641383409500122,0.1539047807455063
+fit\landsat_8_b7_b5_b2\unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220925\validation,0.6786415576934814,landsat_8_b7_b5_b2,validation,adam,0.001,16,32,176,0.9429489374160768,0.7722440958023071,0.1468715816736221
+fit\sentinel_2_b4_b3_b2\unet_model_opt_adam_lr_0.001_batch_32_epochs_20_filters_16_size_176_date_20220810\validation,0.6485369205474854,sentinel_2_b4_b3_b2,validation,adam,0.001,32,16,176,0.9283649325370787,0.7431079149246216,0.1817913800477981
+fit\sentinel_2_b12_b8_b2\unet_model_opt_rmsprop_lr_0.001_batch_16_epochs_20_filters_32_size_144_date_20220924\validation,0.6678842902183533,sentinel_2_b12_b8_b2,validation,rmsprop,0.001,16,32,144,0.929593026638031,0.7382203936576843,0.1851250976324081
