@@ -14,7 +14,7 @@ def dice_coef(y_true, y_pred):
 
 
 # load model
-model_path = "models/landsat_8_b7_b5_b2/unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220925"
+model_path = "models/landsat_8_b7_b5_b2/best_unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220925"
 img_type = "Landsat" if "landsat" in model_path else "Sentinel"
 unet_model = tf.keras.models.load_model(model_path, custom_objects={'dice_coef': dice_coef})
 
