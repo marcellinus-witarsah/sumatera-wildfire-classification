@@ -48,7 +48,7 @@ if uploaded_file:
     image_for_display = cv2.resize(image, (scaled_height, scaled_width))
 
     # display image
-    st.image(image_for_display * 3, channels="RGB", caption="Uploaded file")
+    st.image(image_for_display * 2, channels="RGB", caption="Uploaded file")
 
     # prepare image for input
     resized_image = cv2.resize(image, (height, width))
