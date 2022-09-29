@@ -30,7 +30,7 @@ def predict(image_input, model, size):
     :return: return a prediction result
     """
     image = ImageOps.fit(image_input, size, Image.ANTIALIAS)
-    img = np.asarray(image)
+    img = np.asarray(image)/255
     image_reshape = img[np.newaxis,...]
     res = model.predict(image_reshape)
 
