@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-notebook = "==6.4.12"
 tensorflow = "==2.9.0"
 ipykernel = "==6.15.0"
 pandas = "==1.4.2"
@@ -21,6 +20,7 @@ albumentations = "==1.2.1"
 jupyternotify = "*"
 streamlit = "==1.11.1"
 pillow = "==9.2.0"
+notebook = "*"
 
 [dev-packages]
 
