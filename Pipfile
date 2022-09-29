@@ -20,6 +20,7 @@ tensorflow-addons = "==0.17.1"
 albumentations = "==1.2.1"
 jupyternotify = "*"
 streamlit = "==1.11.1"
+pillow = "==9.2.0"
 
 [dev-packages]
 
