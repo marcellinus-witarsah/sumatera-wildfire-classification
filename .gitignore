@@ -1,3 +1,4 @@
 unet_model*/
 logs/
 *.docx
+/.idea/
