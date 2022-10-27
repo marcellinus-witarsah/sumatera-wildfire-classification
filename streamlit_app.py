@@ -6,7 +6,7 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image, ImageOps
 
-MODEL_PATH = "./models/landsat_8_b7_b5_b2/best_unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220925"
+MODEL_PATH = "./models/landsat_8_b7_b5_b2/unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220925"
 SCALE = 0.5
 
 def dice_coef():
