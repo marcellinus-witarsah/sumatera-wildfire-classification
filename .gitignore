@@ -1,5 +1,4 @@
 unet_model*/
-logs/
 *.docx
 /.idea/
 !/models/landsat_8_b4_b3_b2/unet_model_opt_adam_lr_0.001_batch_16_epochs_20_filters_32_size_176_date_20220809
